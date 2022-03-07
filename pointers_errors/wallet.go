@@ -7,7 +7,7 @@ import (
 
 // In Go if a symbol (variables, types, functions et al) starts with a lowercase symbol then it is private outside the package it's defined in.
 // In Go, when you call a function or a method the arguments are copied.
-
+// In Go, errors are values, so we can refactor it out into a variable and have a single source of truth for it.
 type Bitcoin int
 
 type Wallet struct {
