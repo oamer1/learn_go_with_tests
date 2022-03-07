@@ -6,10 +6,12 @@ type Wallet struct {
 	balance int
 }
 
-func (w Wallet) Deposit(amount int) {
+// In Go no need for dereferencing
+func (w *Wallet) Deposit(amount int) {
+	// Same as (*w).balance
 	w.balance += amount
 }
 
-func (w Wallet) Balance() int {
+func (w *Wallet) Balance() int {
 	return w.balance
 }
