@@ -14,25 +14,25 @@ func TestPerimeter(t *testing.T) {
 
 func TestArea(t *testing.T) {
 
-	t.Run("rectangles", func(t *testing.T) {
-		rectangle := Rectangle{12, 6}
-		got := rectangle.Area()
-		want := 72.0
+	// Notice how our helper does not need to concern itself with whether the shape is a Rectangle or a Circle or a Triangle.
+	// By declaring an interface, the helper is decoupled from the concrete types and only has the method it needs to do its job.
+	checkArea := func(t testing.TB, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Area()
 
 		if got != want {
 			t.Errorf("got %g want %g", got, want)
 		}
+	}
+
+	t.Run("rectangles", func(t *testing.T) {
+		rectangle := Rectangle{12, 6}
+		checkArea(t, rectangle, 72.0)
 	})
 
 	t.Run("circles", func(t *testing.T) {
 		circle := Circle{10}
-		got := circle.Area()
-		want := 314.1592653589793
-
-		// %g	%e for large exponents, %f otherwise
-		if got != want {
-			t.Errorf("got %g want %g", got, want)
-		}
+		checkArea(t, circle, 314.1592653589793)
 	})
 
 }

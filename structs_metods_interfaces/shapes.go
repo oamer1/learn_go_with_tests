@@ -12,12 +12,20 @@ import "math"
 
 // A method is a function with a receiver
 
+// Interfaces  are a very powerful concept in statically typed languages like Go because they allow you to make functions that can be used with different
+// types and create highly-decoupled code whilst still maintaining type-safety
+// In Go interface resolution is implicit. If the type you pass in matches what the interface is asking for, it will compile.
+
 type Circle struct {
 	Radius float64
 }
 type Rectangle struct {
 	Width  float64
 	Height float64
+}
+
+type Shape interface {
+	Area() float64
 }
 
 // Perimeter returns the perimeter of a rectangle.
