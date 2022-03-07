@@ -13,6 +13,7 @@ func Sum(numbers []int) int {
 // Go can let you write variadic functions that can take a variable number of arguments.
 func SumAll(numsToSum ...[]int) []int {
 	lengthOfNumbers := len(numsToSum)
+	// make allows you to create a slice with a starting capacity of the len of the numbersToSum
 	sums := make([]int, lengthOfNumbers)
 
 	for i, nums := range numsToSum {
