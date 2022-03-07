@@ -28,11 +28,14 @@ func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
 
+// The var keyword allows us to define values global to the package.
+var ErrInsufficientFunds = errors.New("cannot withdraw, insufficient funds")
+
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 
 	// errors.New creates a new error with a message of your choosing
 	if amount > w.balance {
-		return errors.New("Oh no")
+		return ErrInsufficientFunds
 	}
 	w.balance -= amount
 	return nil
