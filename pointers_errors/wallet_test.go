@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -8,13 +9,15 @@ func TestWallet(t *testing.T) {
 
 	wallet := Wallet{}
 
-	wallet.Deposit(Bitcoin(10))
+	wallet.Deposit(3)
 
 	got := wallet.Balance()
+	// address of balance in test is 0xc000018190
+	fmt.Printf("address of balance in test is %v \n", &wallet.balance)
 
-	want := Bitcoin(10)
+	want := 3
 
 	if got != want {
-		t.Errorf("got %s want %s", got, want)
+		t.Errorf("got %d want %d", got, want)
 	}
 }
