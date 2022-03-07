@@ -9,7 +9,7 @@ func TestSum(t *testing.T) {
 	t.Run("collection of 5 numbers", func(t *testing.T) {
 
 		// Alternatively [...]int{1, 2, 3, 4, 5}
-		numbers := [5]int{1, 2, 3, 4, 5}
+		numbers := []int{1, 2, 3, 4, 5}
 
 		got := Sum(numbers)
 		want := 15
