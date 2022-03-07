@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // In Go if a symbol (variables, types, functions et al) starts with a lowercase symbol then it is private outside the package it's defined in.
 // In Go, when you call a function or a method the arguments are copied.
 
@@ -17,4 +19,8 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 
 func (w *Wallet) Balance() Bitcoin {
 	return w.balance
+}
+
+func (b Bitcoin) String() string {
+	return fmt.Sprintf("%d BTC", b)
 }
