@@ -3,7 +3,7 @@ package iteration
 
 func Repeat(char string) string {
 	var repeated string
-
+	// strings.Repeat provides similar functionally
 	for i := 0; i < 5; i++ {
 		repeated += char
 	}
