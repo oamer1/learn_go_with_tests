@@ -1,2 +1,3 @@
 go test -v ./...  
-go test -bench=.
+go test -bench=.  
+go test -cover
