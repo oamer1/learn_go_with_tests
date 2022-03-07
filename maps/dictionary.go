@@ -1,5 +1,8 @@
 package main
 
-func Search(dictionary map[string]string, word string) string {
-	return dictionary[word]
+// Dictionary type which acts as a thin wrapper around map. With the custom type defined
+type Dictionary map[string]string
+
+func (d Dictionary) Search(word string) string {
+	return d[word]
 }

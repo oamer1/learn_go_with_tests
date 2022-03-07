@@ -5,9 +5,9 @@ import "testing"
 // The key type is special. It can only be a comparable type because without the ability to
 // tell if 2 keys are equal, we have no way to ensure that we are getting the correct valu
 func TestSearch(t *testing.T) {
-	dictionary := map[string]string{"test": "this is just a test"}
+	dictionary := Dictionary{"test": "this is just a test"}
 
-	got := Search(dictionary, "test")
+	got := dictionary.Search("test")
 	want := "this is just a test"
 
 	assertStrings(t, got, want)
