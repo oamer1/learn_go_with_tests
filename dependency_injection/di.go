@@ -10,12 +10,14 @@ Our function doesn't need to care _where** or **how** the printing happens, so w
 package main
 
 import (
-	"bytes"
 	"fmt"
+	"io"
 	"os"
 )
 
-func Greet(writer *bytes.Buffer, name string) {
+// As discussed earlier fmt.Fprintf allows you to pass in an io.Writer
+// which we know both os.Stdout and bytes.Buffer implement.
+func Greet(writer io.Writer, name string) {
 	fmt.Fprintf(writer, "Hello, %s", name)
 }
 
