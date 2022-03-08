@@ -1,10 +1,10 @@
 package main
 
-import "bytes"
+import (
+	"bytes"
+	"fmt"
+)
 
 func Countdown(out *bytes.Buffer) {
-
-}
-func main() {
-	Countdown()
+	fmt.Fprint(out, "3")
 }
