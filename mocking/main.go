@@ -10,6 +10,20 @@ import (
 const finalWord = "Go!"
 const countdownStart = 3
 
+// spy sleeper
+type sleeper interface {
+	Sleep()
+}
+
+// Spies are a kind of mock which can record how a dependency is used
+type SpySleeper struct {
+	Calls int
+}
+
+func (s *SpySleeper) Sleep() {
+	s.Calls++
+}
+
 // io.Writer is general
 func Countdown(out io.Writer) {
 
