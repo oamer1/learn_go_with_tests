@@ -11,31 +11,30 @@ const finalWord = "Go!"
 const countdownStart = 3
 
 // spy sleeper
-type sleeper interface {
+type Sleeper interface {
 	Sleep()
 }
 
-// Spies are a kind of mock which can record how a dependency is used
-type SpySleeper struct {
-	Calls int
-}
+// DefaultSleeper is an implementation of Sleeper with a predefined delay.
+type DefaultSleeper struct{}
 
-func (s *SpySleeper) Sleep() {
-	s.Calls++
+func (d *DefaultSleeper) Sleep() {
+	time.Sleep(1 * time.Second)
 }
 
 // io.Writer is general
-func Countdown(out io.Writer) {
+func Countdown(out io.Writer, sleeper Sleeper) {
 
 	for i := countdownStart; i > 0; i-- {
-		time.Sleep(1 * time.Second)
+		sleeper.Sleep()
 		fmt.Fprintln(out, i)
 
 	}
 
-	time.Sleep(1 * time.Second)
+	sleeper.Sleep()
 	fmt.Fprint(out, finalWord)
 }
 func main() {
-	Countdown(os.Stdout)
+	sleeper := &DefaultSleeper{}
+	Countdown(os.Stdout, sleeper)
 }
