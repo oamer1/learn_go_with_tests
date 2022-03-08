@@ -22,6 +22,7 @@ func Greet(writer io.Writer, name string) {
 	fmt.Fprintf(writer, "Hello, %s", name)
 }
 
+// http.ResponseWriter also implements io.Writer so this is why we could re-use our Greet
 func MyGreeterHandler(w http.ResponseWriter, r *http.Request) {
 	Greet(w, "world")
 }
