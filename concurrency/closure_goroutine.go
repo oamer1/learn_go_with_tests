@@ -1,13 +1,13 @@
 // https://go.dev/doc/faq#closures_and_goroutines
 // https://github.com/golang/go/wiki/CommonMistakes#using-goroutines-on-loop-iterator-variables
 // https://stackoverflow.com/questions/21822527/why-golang-dont-iterate-correctly-in-my-for-loop-with-range
-package main
+package concurrency
 
 import (
 	"fmt"
 )
 
-func main() {
+func con() {
 	vals := []int{1, 2, 3}
 	done := make(chan bool)
 
