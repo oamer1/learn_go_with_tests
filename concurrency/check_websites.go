@@ -15,6 +15,7 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 	// 2- lexical scope they are defined
 	for _, url := range urls {
 		// Use url parameter in anyon functions or re-init
+		// Generate WARNING: DATA RACE if run "go test -race"
 		url := url
 		go func() {
 			results[url] = wc(url)
