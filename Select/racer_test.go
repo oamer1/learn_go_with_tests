@@ -14,21 +14,19 @@ import (
 
 func TestRacer(t *testing.T) {
 
-	slowServer := makeDelayedServer(20 * time.Millisecond)
-	fastServer := makeDelayedServer(0 * time.Millisecond)
+	t.Run("returns an error if a server doesn't respond within 10s", func(t *testing.T) {
+		serverA := makeDelayedServer(11 * time.Second)
+		serverB := makeDelayedServer(12 * time.Second)
 
-	// execute at end but keep near
-	defer slowServer.Close()
-	defer fastServer.Close()
+		defer serverA.Close()
+		defer serverB.Close()
 
-	slowURL := slowServer.URL
-	fastURL := fastServer.URL
+		_, err := Racer(serverA.URL, serverB.URL)
 
-	want := fastURL
-	got := Racer(slowURL, fastURL)
-	if got != want {
-		t.Errorf("got %q, want %q", got, want)
-	}
+		if err == nil {
+			t.Error("expected an error but didn't get one")
+		}
+	})
 
 }
 
