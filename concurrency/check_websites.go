@@ -1,5 +1,7 @@
 package concurrency
 
+import "time"
+
 // WebsiteChecker checks a url, returning a bool.
 type WebsiteChecker func(string) bool
 
@@ -12,12 +14,13 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 	// 1-executed at the same time that they're declared
 	// 2- lexical scope they are defined
 	for _, url := range urls {
-
 		go func() {
 			results[url] = wc(url)
 		}()
 
 	}
+
+	time.Sleep(2 * time.Second)
 
 	return results
 }
