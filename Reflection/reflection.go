@@ -4,11 +4,7 @@ import "reflect"
 
 // This code is very unsafe and very naive
 func walk(x interface{}, fn func(input string)) {
-	val := reflect.ValueOf(x)
-
-	if val.Kind() == reflect.Ptr {
-		val = val.Elem()
-	}
+	val := getValue(x)
 
 	// NumField on a pointer Value
 	for i := 0; i < val.NumField(); i++ {
@@ -23,4 +19,13 @@ func walk(x interface{}, fn func(input string)) {
 		}
 
 	}
+}
+func getValue(x interface{}) reflect.Value {
+	val := reflect.ValueOf(x)
+
+	if val.Kind() == reflect.Ptr {
+		val = val.Elem()
+	}
+
+	return val
 }
