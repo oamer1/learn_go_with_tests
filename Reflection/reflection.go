@@ -28,6 +28,7 @@ func walk(x interface{}, fn func(input string)) {
 		}
 
 	case reflect.Chan:
+		// while chan have value
 		for v, ok := val.Recv(); ok; v, ok = val.Recv() {
 			walkValue(v)
 
