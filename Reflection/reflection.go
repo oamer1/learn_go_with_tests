@@ -1,6 +1,8 @@
 package main
 
-import "reflect"
+import (
+	"reflect"
+)
 
 func walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
@@ -17,7 +19,14 @@ func walk(x interface{}, fn func(input string)) {
 	case reflect.Slice, reflect.Array:
 		numberOfValues = val.Len()
 		getField = val.Index
+	case reflect.Map:
+		// breaks index loop abstraction
+		for _, key := range val.MapKeys() {
+			walk(val.MapIndex(key).Interface(), fn)
+		}
 	}
+
+	// struct, it's just the keys are unknown at compile time
 
 	for i := 0; i < numberOfValues; i++ {
 		walk(getField(i).Interface(), fn)
