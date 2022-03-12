@@ -2,20 +2,28 @@ package propertybasedtests
 
 import "strings"
 
+type RomanNumeral struct {
+	Value  int
+	Symbol string
+}
+
+var allRomanNumerals = []RomanNumeral{
+	{10, "X"},
+	{9, "IX"},
+	{5, "V"},
+	{4, "IV"},
+	{1, "I"},
+}
+
 func ConvertToRoman(arabic int) string {
 
 	var result strings.Builder
 
-	for i := arabic; i > 0; i-- {
-		if i == 5 {
-			result.WriteString("V")
-			break
+	for _, numeral := range allRomanNumerals {
+		for arabic >= numeral.Value {
+			result.WriteString(numeral.Symbol)
+			arabic -= numeral.Value
 		}
-		if i == 4 {
-			result.WriteString("IV")
-			break
-		}
-		result.WriteString("I")
 	}
 
 	return result.String()
