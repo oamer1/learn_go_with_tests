@@ -51,32 +51,37 @@ func (r romanNumerals) ValueOf(symbols ...byte) int {
 	return 0
 }
 
+func (r romanNumerals) Exists(symbols ...byte) bool {
+
+	return r.ValueOf(symbols...) != 0
+}
+
 // later..
-func ConvertToArabic(roman string) int {
-	total := 0
+func ConvertToArabic(roman string) (total int) {
 
-	for i := 0; i < len(roman); i++ {
-		symbol := roman[i]
+	for _, romanNum := range windowedRoman(roman).Symbols() {
+		total += allRomanNumerals.ValueOf(romanNum...)
+	}
+	return
+}
 
-		// look ahead to next symbol if we can and, the current symbol is base 10 (only valid subtractors)
-		if i+1 < len(roman) && isSubtractive(symbol) {
-			nextSymbol := roman[i+1]
+type windowedRoman string
 
-			if value := allRomanNumerals.ValueOf(symbol, nextSymbol); value != 0 {
-				total += value
-				i++
-				// move past this character too for the next loop
-			} else {
-				total += allRomanNumerals.ValueOf(symbol)
-			}
+// Separate roman string into its constituents components
+func (w windowedRoman) Symbols() (symbols [][]byte) {
 
+	for i := 0; i < len(w); i++ {
+		symbol := w[i]
+		notAtEnd := i+1 < len(w)
+		if notAtEnd && isSubtractive(symbol) && allRomanNumerals.Exists(symbol, w[i+1]) {
+			symbols = append(symbols, []byte{symbol, w[i+1]})
+			i++
 		} else {
-			// single I
-			total += allRomanNumerals.ValueOf(symbol)
+			symbols = append(symbols, []byte{symbol})
 
 		}
 	}
-	return total
+	return
 }
 
 func isSubtractive(symbol uint8) bool {
