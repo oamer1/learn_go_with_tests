@@ -27,14 +27,6 @@ func TestSecondsInRadians(t *testing.T) {
 	}
 }
 
-func simpleTime(hours, minutes, seconds int) time.Time {
-	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
-}
-
-func testName(t time.Time) string {
-	return t.Format("15:04:05")
-}
-
 func TestSecondHandPoint(t *testing.T) {
 	cases := []struct {
 		time  time.Time
@@ -60,16 +52,14 @@ func roughlyEqualFloat64(a, b float64) bool {
 }
 
 func roughlyEqualPoint(a, b Point) bool {
-	return roughlyEqualFloat64(a.X, b.X) && roughlyEqualFloat64(a.Y, b.Y)
+	return roughlyEqualFloat64(a.X, b.X) &&
+		roughlyEqualFloat64(a.Y, b.Y)
 }
 
-func TestSecondHandAt30Seconds(t *testing.T) {
-	tm := time.Date(1337, time.January, 1, 0, 0, 30, 0, time.UTC)
+func simpleTime(hours, minutes, seconds int) time.Time {
+	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
+}
 
-	want := Point{X: 150, Y: 150 + 90}
-	got := SecondHand(tm)
-
-	if got != want {
-		t.Errorf("Got %v, wanted %v", got, want)
-	}
+func testName(t time.Time) string {
+	return t.Format("15:04:05")
 }
