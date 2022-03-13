@@ -17,6 +17,7 @@ func SecondHand(t time.Time) Point {
 	return Point{150, 60}
 }
 
+// Floating point arithmetic is notoriously inaccurate. Computers can only really handle integers,
 func secondsInRadians(t time.Time) float64 {
-	return math.Pi
+	return (math.Pi / (30 / (float64(t.Second()))))
 }

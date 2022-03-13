@@ -6,24 +6,31 @@ import (
 	"time"
 )
 
-func TestSecondHandAtMidnight(t *testing.T) {
+func TestSecondsInRadians(t *testing.T) {
+	cases := []struct {
+		time  time.Time
+		angle float64
+	}{
+		{simpleTime(0, 0, 30), math.Pi},
+		{simpleTime(0, 0, 0), 0},
+		{simpleTime(0, 0, 45), (math.Pi / 2) * 3},
+		{simpleTime(0, 0, 7), (math.Pi / 30) * 7},
+	}
 
-	tm := time.Date(1337, time.January, 1, 0, 0, 0, 0, time.UTC)
-
-	want := Point{X: 150, Y: 150 - 90}
-	got := SecondHand(tm)
-
-	if got != want {
-		t.Errorf("Got %v, wanted %v", got, want)
+	for _, c := range cases {
+		t.Run(testName(c.time), func(t *testing.T) {
+			got := secondsInRadians(c.time)
+			if got != c.angle {
+				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
+			}
+		})
 	}
 }
 
-func TestSecondsInRadians(t *testing.T) {
-	thirtySeconds := time.Date(312, time.October, 28, 0, 0, 30, 0, time.UTC)
-	want := math.Pi
-	got := secondsInRadians(thirtySeconds)
+func simpleTime(hours, minutes, seconds int) time.Time {
+	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
+}
 
-	if want != got {
-		t.Fatalf("Wanted %v radians, but got %v", want, got)
-	}
+func testName(t time.Time) string {
+	return t.Format("15:04:05")
 }
