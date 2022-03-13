@@ -1,6 +1,9 @@
 package propertybasedtests
 
-import "strings"
+import (
+	"errors"
+	"strings"
+)
 
 type romanNumeral struct {
 	Value  uint16
@@ -26,8 +29,20 @@ var allRomanNumerals = romanNumerals{
 	{1, "I"},
 }
 
-func ConvertToRoman(arabic uint16) string {
+//IsValid checks if the number is valid in Roman numeral
+func IsValid(n uint16) bool {
+	if n <= 0 || n > 3999 {
+		return false
+	}
 
+	return true
+}
+
+func ConvertToRoman(arabic uint16) (string, error) {
+
+	if !IsValid(arabic) {
+		return "", errors.New("number is not roman numerals, 0 <= roman <= 399")
+	}
 	var result strings.Builder
 
 	for _, numeral := range allRomanNumerals {
@@ -37,7 +52,7 @@ func ConvertToRoman(arabic uint16) string {
 		}
 	}
 
-	return result.String()
+	return result.String(), nil
 }
 
 func (r romanNumerals) ValueOf(symbols ...byte) uint16 {
