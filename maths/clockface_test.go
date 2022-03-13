@@ -35,12 +35,13 @@ func testName(t time.Time) string {
 	return t.Format("15:04:05")
 }
 
-func TestSecondHandVector(t *testing.T) {
+func TestSecondHandPoint(t *testing.T) {
 	cases := []struct {
 		time  time.Time
 		point Point
 	}{
 		{simpleTime(0, 0, 30), Point{0, -1}},
+		{simpleTime(0, 0, 45), Point{-1, 0}},
 	}
 
 	for _, c := range cases {
