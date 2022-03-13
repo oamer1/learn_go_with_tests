@@ -71,13 +71,12 @@ type windowedRoman string
 func (w windowedRoman) Symbols() (symbols [][]byte) {
 
 	for i := 0; i < len(w); i++ {
-		symbol := w[i]
 		notAtEnd := i+1 < len(w)
-		if notAtEnd && isSubtractive(symbol) && allRomanNumerals.Exists(symbol, w[i+1]) {
-			symbols = append(symbols, []byte{symbol, w[i+1]})
+		if notAtEnd && isSubtractive(w[i]) && allRomanNumerals.Exists(w[i], w[i+1]) {
+			symbols = append(symbols, []byte{w[i], w[i+1]})
 			i++
 		} else {
-			symbols = append(symbols, []byte{symbol})
+			symbols = append(symbols, []byte{w[i]})
 
 		}
 	}
