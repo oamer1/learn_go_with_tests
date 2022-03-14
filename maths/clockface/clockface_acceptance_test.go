@@ -93,10 +93,10 @@ func TestSVGWriterHourHand(t *testing.T) {
 		time time.Time
 		line Line
 	}{
-		// {
-		// 	simpleTime(6, 0, 0),
-		// 	Line{150, 150, 150, 200},
-		// },
+		{
+			simpleTime(6, 0, 0),
+			Line{150, 150, 150, 200},
+		},
 	}
 
 	for _, c := range cases {
@@ -121,4 +121,12 @@ func containsLine(l Line, ls []Line) bool {
 		}
 	}
 	return false
+}
+
+func simpleTime(hours, minutes, seconds int) time.Time {
+	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
+}
+
+func testName(t time.Time) string {
+	return t.Format("15:04:05")
 }
