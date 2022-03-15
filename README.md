@@ -16,8 +16,8 @@
 
 ## Top tips
 
-> Optimism is an occupational hazard of programming. Feedback is the treatment.
+> Optimism is an occupational hazard of programming. Feedback is the treatment.  
 > Kent Beck
 
-> Be as close to delivering real consumer value as quickly as possible (often called a "happy path"). Once we have delivered a small amount of consumer value end-to-end, further iteration of the rest of the requirements is usually straightforward.
+> Be as close to delivering real consumer value as quickly as possible (often called a "happy path"). Once we have delivered a small amount of consumer value end-to-end, further iteration of the rest of the requirements is usually straightforward.  
 > Learning Go with tests - Reading files
