@@ -6,6 +6,7 @@ import (
 	"errors"
 	"io/fs"
 	blogposts "learn_go_with_tests/reading_files"
+	"reflect"
 	"testing"
 	"testing/fstest"
 )
@@ -17,24 +18,31 @@ type StubFailingFS struct {
 func (s StubFailingFS) open(name string) (fs.File, error) {
 	return nil, errors.New("Always failing file")
 }
-
 func TestNewBlogPosts(t *testing.T) {
-	// in-memory file system for testing
+	const (
+		firstBody = `Title: Post 1
+Description: Description 1`
+		secondBody = `Title: Post 2
+Description: Description 2`
+	)
+
 	fs := fstest.MapFS{
-		"hello world.md":  {Data: []byte("Title: Post 1")},
-		"hello-world2.md": {Data: []byte("Title: Post 2")},
+		"hello world.md":  {Data: []byte(firstBody)},
+		"hello-world2.md": {Data: []byte(secondBody)},
 	}
+	posts, _ := blogposts.NewPostsFromFS(fs)
 
-	posts, err := blogposts.NewPostsFromsFS(fs)
+	// rest of test code cut for brevity
+	assertPost(t, posts[0], blogposts.Post{
+		Title:       "Post 1",
+		Description: "Description 1",
+	})
 
-	got := posts[0]
-	want := blogposts.Post{Title: "Post 1"}
+}
 
-	if err != nil {
-		t.Fatal(err)
+func assertPost(t *testing.T, got blogposts.Post, want blogposts.Post) {
+	t.Helper()
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %+v, want %+v", got, want)
 	}
-	if len(posts) != len(fs) {
-		t.Errorf("got %d posts, wanted %d posts", len(posts), len(fs))
-	}
-
 }
