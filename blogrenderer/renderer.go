@@ -1,6 +1,9 @@
 package blogrenderer
 
-import "io"
+import (
+	"fmt"
+	"io"
+)
 
 // if you're continuing from the read files chapter, you shouldn't redefine this
 type Post struct {
@@ -9,5 +12,7 @@ type Post struct {
 }
 
 func Render(w io.Writer, p Post) error {
-	return nil
+
+	_, err := fmt.Fprintf(w, "<h1>%s</h1>", p.Title)
+	return err
 }
