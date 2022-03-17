@@ -39,6 +39,7 @@ func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
 	return r.templ.ExecuteTemplate(w, "index.gohtml", posts)
 }
 
+// parse the Body into HTMLBody and then I use that field in the template to render the HTML.
 type postViewModel struct {
 	Post
 	HTMLBody template.HTML
