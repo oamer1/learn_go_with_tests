@@ -34,3 +34,7 @@ func (r *PostRenderer) Render(w io.Writer, p Post) error {
 
 	return nil
 }
+
+func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
+	return r.templ.ExecuteTemplate(w, "index.gohtml", posts)
+}
