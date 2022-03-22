@@ -3,6 +3,7 @@ package generics
 type StackOfInts = Stack
 type StackOfStrings = Stack
 
+// Any type
 type Stack struct {
 	values []interface{}
 }
