@@ -40,3 +40,6 @@
 >   "Learning Go with tests - Generics"
 
 > Duplication is better than bad abstraction.
+
+> When embedding types, really think about what impact that has on your public API.
+> "Learning Go with tests - json"
