@@ -4,6 +4,7 @@ import "testing"
 
 func TestStack(t *testing.T) {
 	t.Run("integer stack", func(t *testing.T) {
+		// Equivalent to &StackOfInts{}
 		myStackOfInts := new(StackOfInts)
 
 		// check stack is empty
