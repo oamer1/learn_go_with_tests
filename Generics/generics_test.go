@@ -49,6 +49,14 @@ func TestStack(t *testing.T) {
 		firstNum, _ := myStackOfInts.Pop()
 		secondNum, _ := myStackOfInts.Pop()
 
-		AssertEqual(firstNum+secondNum, 3)
+		// get our ints from out interface{}
+		// type assertion
+		firstNumCast, ok := firstNum.(int)
+		AssertTrue(t, ok) // need to check we definitely got an int out of the interface{}
+
+		secondNumCast, ok := secondNum.(int)
+		AssertTrue(t, ok)
+
+		AssertEqual(t, firstNumCast+secondNumCast, 3)
 	})
 }
