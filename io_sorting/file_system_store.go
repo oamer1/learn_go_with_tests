@@ -43,6 +43,8 @@ func (f *FileSystemPlayerStore) RecordWin(name string) {
 		f.league = append(f.league, Player{name, 1})
 	}
 
+	// When we RecordWin, we Seek back to the start of the file and then write the new data—but what if the new data was smaller than what was there before?
+
 	f.database.Seek(0, 0)
 	json.NewEncoder(f.database).Encode(f.league)
 }
