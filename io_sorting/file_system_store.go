@@ -25,14 +25,15 @@ func (f *FileSystemPlayerStore) GetPlayerScore(name string) int {
 
 	return 0
 }
+
 func (f *FileSystemPlayerStore) RecordWin(name string) {
 	league := f.GetLeague()
+	player := league.Find(name)
 
-	for i, player := range league {
-		// When you range over a slice you are returned the current index of the loop (in our case i) and a copy of the element at that index
-		if player.Name == name {
-			league[i].Wins++
-		}
+	if player != nil {
+		player.Wins++
+	} else {
+		league = append(league, Player{name, 1})
 	}
 
 	f.database.Seek(0, 0)
