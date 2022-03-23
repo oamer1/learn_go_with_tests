@@ -43,3 +43,11 @@
 
 > When embedding types, really think about what impact that has on your public API.
 > "Learning Go with tests - json"
+
+> Breaking rules
+>
+> - Most rules in software engineering aren't really rules, just best practices that work 80% of the time.
+> - We discovered a scenario where one of our previous "rules" of not testing internal functions was not helpful for us so we broke the rule.
+> - It's important when breaking rules to understand the trade-off you are making. In our case, we were ok with it because it was just one test and would've been very difficult to exercise the scenario otherwise.
+> - In order to be able to break the rules you must understand them first. An analogy is with learning guitar. It doesn't matter how creative you think you are, you must understand and practice the fundamentals.  
+>   "Learning Go with tests - io"
