@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -77,7 +76,7 @@ func TestFileSystemStore(t *testing.T) {
 
 }
 
-func createTempFile(t *testing.T, initialData string) (io.ReadWriteSeeker, func()) {
+func createTempFile(t *testing.T, initialData string) (*os.File, func()) {
 	t.Helper()
 
 	// TempFile creates a temporary file for us to use. The "db" value we've passed in is a prefix put on a random file name it will create. This is to ensure it won't clash with other files by accident.
