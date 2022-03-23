@@ -6,6 +6,8 @@ import (
 	"io"
 )
 
+type League []Player
+
 // NewLeague creates a league from JSON.
 func NewLeague(rdr io.Reader) ([]Player, error) {
 	var league []Player
@@ -15,4 +17,13 @@ func NewLeague(rdr io.Reader) ([]Player, error) {
 	}
 
 	return league, err
+}
+
+func (l League) Find(name string) *Player {
+	for i, p := range l {
+		if p.Name == name {
+			return &l[i]
+		}
+	}
+	return nil
 }
