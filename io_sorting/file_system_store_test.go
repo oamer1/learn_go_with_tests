@@ -40,9 +40,13 @@ func TestFileSystemStore(t *testing.T) {
 
 		want := 33
 
-		if got != want {
-			t.Errorf("got %d want %d", got, want)
-		}
+		assertScoreEquals(t, got, want)
 	})
 
+}
+
+func assertScoreEquals(t *testing.T, got int, want int) {
+	if got != want {
+		t.Errorf("got %d want %d", got, want)
+	}
 }
