@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/quii/learn-go-with-tests/time/v1"
+	poker "learn_go_with_tests/time"
 	"log"
 	"net/http"
 	"os"

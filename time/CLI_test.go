@@ -3,7 +3,7 @@ package poker_test
 import (
 	"fmt"
 	"io"
-	poker "learn_go_with_tests/command_line"
+	poker "learn_go_with_tests/time"
 	"strings"
 	"testing"
 	"time"
