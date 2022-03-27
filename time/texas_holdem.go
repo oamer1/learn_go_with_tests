@@ -8,6 +8,7 @@ type TexasHoldem struct {
 	store   PlayerStore
 }
 
+// NewTexasHoldem returns a new game.
 func NewTexasHoldem(alerter BlindAlerter, store PlayerStore) *TexasHoldem {
 	return &TexasHoldem{
 		alerter: alerter,
