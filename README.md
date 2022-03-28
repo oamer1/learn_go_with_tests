@@ -55,5 +55,5 @@
 > Whenever you have a lot of dependencies for a thing in your system, it implies it's doing too much.
 > "Learning Go with tests - time"
 
-> Testable code is decoupled and single purpose,
+> Testable code is decoupled and single purpose.  
 > "Learning Go with tests - os-exec"
