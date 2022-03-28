@@ -2,10 +2,10 @@ package poker_test
 
 import (
 	"fmt"
+	"io/ioutil"
+	poker "learn_go_with_tests/websockets"
 	"testing"
 	"time"
-
-	poker "learn_go_with_tests/time"
 )
 
 func TestGame_Start(t *testing.T) {
@@ -13,7 +13,7 @@ func TestGame_Start(t *testing.T) {
 		blindAlerter := &poker.SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(blindAlerter, dummyPlayerStore)
 
-		game.Start(5)
+		game.Start(5, ioutil.Discard)
 
 		cases := []poker.ScheduledAlert{
 			{At: 0 * time.Second, Amount: 100},
@@ -36,7 +36,7 @@ func TestGame_Start(t *testing.T) {
 		blindAlerter := &poker.SpyBlindAlerter{}
 		game := poker.NewTexasHoldem(blindAlerter, dummyPlayerStore)
 
-		game.Start(7)
+		game.Start(7, ioutil.Discard)
 
 		cases := []poker.ScheduledAlert{
 			{At: 0 * time.Second, Amount: 100},

@@ -7,4 +7,4 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20220310201231-552c6011c0b8
 )
 
-require github.com/gorilla/websocket v1.5.0 // indirect
+require github.com/gorilla/websocket v1.5.0
