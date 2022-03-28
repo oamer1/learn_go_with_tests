@@ -161,13 +161,13 @@ func retryUntil(d time.Duration, f func() bool) bool {
 	return false
 }
 
-func within(t testing.TB, d time.Duration, assert func()) {
+func within(t testing.TB, d time.Duration, assertfunc func()) {
 	t.Helper()
 
 	done := make(chan struct{}, 1)
 
 	go func() {
-		assert()
+		assertfunc()
 		done <- struct{}{}
 	}()
 
