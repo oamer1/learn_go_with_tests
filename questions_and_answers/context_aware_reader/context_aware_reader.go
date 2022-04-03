@@ -1,7 +1,23 @@
 package contextawarereader
 
-import "io"
+import (
+	"context"
+	"io"
+)
 
-func NewCancellableReader(rdr io.Reader) io.Reader {
-	return rdr
+func NewCancellableReader(ctx context.Context, rdr io.Reader) io.Reader {
+	return &readerCtx{
+		ctx:      ctx,
+		delegate: rdr,
+	}
+}
+
+type readerCtx struct {
+	ctx      context.Context
+	delegate io.Reader
+}
+
+func (r *readerCtx) Read(p []byte) (n int, err error) {
+	return r.delegate.Read(p)
+
 }
