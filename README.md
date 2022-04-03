@@ -66,3 +66,6 @@
 
 > In software engineering, the delegation pattern is an object-oriented design pattern that allows object composition to achieve the same code reuse as inheritance.  
 > [Delegation pattern](https://en.wikipedia.org/wiki/Delegation_pattern)
+
+> If your tests are causing you pain, listen to that signal and think about the design of your code.  
+> "Learning Go with tests - http-handlers-revisited"
