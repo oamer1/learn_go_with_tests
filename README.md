@@ -69,3 +69,49 @@
 
 > If your tests are causing you pain, listen to that signal and think about the design of your code.  
 > "Learning Go with tests - http-handlers-revisited"
+
+### Meta section
+
+#### Why section
+
+> The promise of software is that it can change. This is why it is called soft ware, it is malleable compared to hardware.
+
+> Go has made a number of choices which one hopes will make it more legacy-proof.
+>
+> - Go has only 25 keywords and a lot of systems can be built from the standard library and a few other small libraries.
+> - The tooling in respect to testing, benchmarking, linting & shipping is first class compared to most alternatives.
+> - The standard library is brilliant.
+> - Very fast compilation speed for tight feedback loops
+> - The Go backward compatibility promise. It looks like Go will get generics and other features in the future but the designers have promised that even Go code you wrote 5 years ago will still build.
+
+> Any software system used in the real-world must change or become less and less useful in the environment.  
+> "The Law of Continuous Change"
+
+> As a system evolves, its complexity increases unless work is done to reduce it .
+> "The Law of Increasing Complexity"
+
+> When refactoring code you must not be changing behaviour.
+
+> In order to safely refactor you need unit tests because they provide
+>
+> - Confidence you can reshape code without worrying about changing behaviour
+> - Documentation for humans as to how the system should behave
+> - Much faster and more reliable feedback than manual testing
+
+> Favour testing behaviour rather than implementation detail.
+
+> Refactoring Gives us signals about our unit tests. If we have to do manual checks, we need more tests. If tests are wrongly failing then our tests are at the wrong abstraction level (or have no value and should be deleted).
+>
+> - Helps us handle the complexities within and between our units.
+>   Unit tests
+>   - Give a safety net to refactor.
+>   - Verify and document the behaviour of our units.
+
+> (Well designed) units are
+>
+> - Easy to write meaningful unit tests.
+> - Easy to refactor.
+
+> Writing good unit tests is a design problem so think about structuring your code so you have meaningful units that you can integrate together like Lego bricks.
+
+> TDD can help and force you to design well factored software iteratively, backed by tests to help future work as it arrives.
