@@ -57,3 +57,6 @@
 
 > Testable code is decoupled and single purpose.  
 > "Learning Go with tests - os-exec"
+
+> Always make sure your tests reflect how you'd like to use your code.  
+> "Learning Go with tests - Error types"
