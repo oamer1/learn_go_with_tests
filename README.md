@@ -60,3 +60,9 @@
 
 > Always make sure your tests reflect how you'd like to use your code.  
 > "Learning Go with tests - Error types"
+
+> Small interfaces are good and are easily composed.  
+> "Learning Go with tests - context-aware-reader"
+
+> In software engineering, the delegation pattern is an object-oriented design pattern that allows object composition to achieve the same code reuse as inheritance.  
+> [Delegation pattern](https://en.wikipedia.org/wiki/Delegation_pattern)
