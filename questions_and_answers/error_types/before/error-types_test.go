@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+type BadStatusError struct {
+	URL    string
+	Status int
+}
+
+// error
+func (b BadStatusError) Error() string {
+	return fmt.Sprintf("did not get 200 from %s, got %d", b.URL, b.Status)
+}
+
 // DumbGetter will get the string body of url if it gets a 200
 func DumbGetter(url string) (string, error) {
 	res, err := http.Get(url)
@@ -17,7 +27,7 @@ func DumbGetter(url string) (string, error) {
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("did not get 200 from %s, got %d", url, res.StatusCode)
+		return "", BadStatusError{URL: url, Status: res.StatusCode}
 	}
 
 	defer res.Body.Close()
@@ -39,8 +49,15 @@ func TestDumbGetter(t *testing.T) {
 			t.Fatal("expected an error")
 		}
 
-		want := fmt.Sprintf("did not get 200 from %s, got %d", svr.URL, http.StatusTeapot)
-		got := err.Error()
+		// type assertion
+		// A type assertion provides access to an interface value's underlying concrete value
+		got, isStatusErr := err.(BadStatusError)
+
+		if !isStatusErr {
+			t.Fatalf("was not a BadStatusError, got %T", err)
+		}
+
+		want := BadStatusError{URL: svr.URL, Status: http.StatusTeapot}
 
 		if got != want {
 			t.Errorf(`got "%v", want "%v"`, got, want)
