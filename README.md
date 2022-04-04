@@ -115,3 +115,23 @@
 > Writing good unit tests is a design problem so think about structuring your code so you have meaningful units that you can integrate together like Lego bricks.
 
 > TDD can help and force you to design well factored software iteratively, backed by tests to help future work as it arrives.
+
+#### Anti-patterns
+
+- Not doing TDD at all
+- Misunderstanding the constraints of the refactoring step
+- Having tests that won't fail (or, evergreen tests)
+- Useless assertions
+- Asserting on irrelevant detail
+- Lots of assertions within a single scenario for unit tests
+  Not listening to your tests
+- Complicated table tests
+
+### Summary
+
+Most problems with unit tests can normally be traced to:
+
+- Developers not following the TDD process
+- Poor design
+
+**_TDD's main purpose is to provide feedback on your design_**
